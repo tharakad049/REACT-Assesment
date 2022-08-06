@@ -1,10 +1,10 @@
 import React from "react";
-import UserForm from "../pages/User";
+import Login from "../pages/Login/index";
 
 function App() {
   return (
     <div>
-      <UserForm/>
+      <Login/>
     </div>
   );
 }
