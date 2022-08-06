@@ -1,11 +1,10 @@
 import React from "react";
-import Login from "../pages/Login/index";
-import Dashboard from "../pages/Dashboard";
+import Product from "../pages/Product Manage";
 
 function App() {
   return (
     <div>
-      <Login/>
+      <Product/>
     </div>
   );
 }
