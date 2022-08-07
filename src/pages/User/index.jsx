@@ -1,44 +1,71 @@
 import React, {Component} from "react";
-import {TableContainer,Table,TableHead,TableRow,TableCell} from "@mui/material";
-import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
-import {Paper} from "@mui/material";
+import {Button, Grid, Paper, Table, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";
 import GDSESnackBar from "../../Components/SnackBar";
-import {Grid, Typography} from "@mui/material";
-import {Button} from "@mui/material";
+import {TextValidator, ValidatorForm} from 'react-material-ui-form-validator';
+import PostService from "../../Services/PostService";
 
 class UserForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             formData: {
-                firstName: '',
-                lastName: '',
                 email: '',
-                userName: '',
+                username: '',
                 password: '',
-                city: '',
-                street: '',
-                streetNo: '',
-                zipCode: '',
-                latValue: '',
-                longValue: '',
-                mobileNo: ''
+                name: {
+                    firstname: '',
+                    lastname: ''
+                },
+                address: {
+                    city: '',
+                    street: '',
+                    number: '',
+                    zipcode: '',
+                    geolocation: {
+                        lat: '',
+                        long: ''
+                    }
+                },
+                phone: ''
             },
 
-            alert:false,
-            message:'',
-            severity:''
+            alert: false,
+            message: '',
+            severity: ''
+        }
+    }
+
+    handleSubmit = async () => {
+        let formData = this.state.formData
+        let response = await PostService.createPost(formData);
+        if (response.status===201){
+            this.setState({
+                alert: true,
+                message: 'ok',
+                severity: 'success'
+            });
+        }else{
+            this.setState({
+                alert: true,
+                message: 'error',
+                severity: 'un success'
+            });
         }
     }
 
     render() {
         return (
             <>
-                <ValidatorForm ref="form">
+                <ValidatorForm
+                    ref="form"
+                    onSubmit={this.handleSubmit}
+                    onError={errors => console.log(errors)}
+                >
                     <Grid container spacing={1}>
                         <Grid item lg={12} xs={12} sm={12} md={12}>
                             <Typography variant="body1"><b><h1>User Registration</h1></b></Typography>
                         </Grid>
+
                         <Grid item lg={6} md={6} sm={12} xs={12}>
                             <Typography variant="body1"><h3>First Name</h3></Typography>
                             <TextValidator
@@ -47,6 +74,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.firstname}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.firstname = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -58,6 +91,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.lastname}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.lastname = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -69,6 +108,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.email}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.email = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -80,6 +125,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.username}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.username = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -91,6 +142,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.password}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.password = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -102,6 +159,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.city}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.city = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -113,6 +176,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.street}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.street = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -124,6 +193,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.number}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.number = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -135,6 +210,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.zipcode}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.zipcode = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -146,6 +227,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.lat}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.lat = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -157,6 +244,12 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.long}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.long = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
@@ -168,18 +261,27 @@ class UserForm extends Component {
                                 variant="outlined"
                                 size="small"
                                 style={{width: '100%'}}
+                                value={this.state.formData.phone}
+                                onChange={(e) => {
+                                    let formData = this.state.formData
+                                    formData.phone = e.target.value
+                                    this.setState({formData})
+                                }}
                                 validators={['required']}
                             />
                         </Grid>
                     </Grid>
-                    <Grid item lg={12} md={12} sm={12} xm={12} style={{ display: 'flex' }} justifyContent="flex-end" container marginTop={"10px"} >
-                        <Button size="small" variant="contained" color={"warning"} style={{marginRight:"10px"}}>Clear</Button>
-                        <Button size="small" variant="contained" style={{marginRight:"10px"}}>Save</Button>
+                    <Grid item lg={12} md={12} sm={12} xm={12} style={{display: 'flex'}} justifyContent="flex-end"
+                          container marginTop={"10px"}>
+                        <Button size="small" variant="contained" color={"warning"}
+                                style={{marginRight: "10px"}}>Clear</Button>
+                        <Button size="small" variant="contained" style={{marginRight: "10px"}} label="Save"
+                                type="submit" onClick={this.handleSubmit} >Save</Button>
                     </Grid>
                 </ValidatorForm>
                 <Grid>
                     <TableContainer component={Paper}>
-                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <Table sx={{minWidth: 650}} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="right">First Name</TableCell>
@@ -203,7 +305,7 @@ class UserForm extends Component {
                 <GDSESnackBar
                     open={this.state.alert}
                     onClose={() => {
-                        this.setState({ alert: false })
+                        this.setState({alert: false})
                     }}
                     message={this.state.message}
                     autoHideDuration={3000}
