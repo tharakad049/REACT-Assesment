@@ -7,11 +7,25 @@ class PostService{
                 .then((res) => {
                     return resolve(res)
                 })
-                .catch((er) => {
-                    return resolve(er)
+                .catch((err) => {
+                    return resolve(err)
                 })
         })
         return await promise
     }
+
+    fetchPost = async (data) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.get("users", data)
+                .then((res) => {
+                    return resolve(res)
+                })
+                .catch((err) => {
+                    return resolve(err)
+                })
+        })
+        return await promise
+    }
+
 }
 export default new PostService();

@@ -3,6 +3,7 @@ import {Button, Grid, Paper, Table, TableCell, TableContainer, TableHead, TableR
 import GDSESnackBar from "../../Components/SnackBar";
 import {TextValidator, ValidatorForm} from 'react-material-ui-form-validator';
 import PostService from "../../Services/PostService";
+import TableBody from "@mui/material/TableBody";
 
 class UserForm extends Component {
     constructor(props) {
@@ -32,37 +33,61 @@ class UserForm extends Component {
             alert: false,
             message: '',
             severity: ''
+
+           // data: []
         }
     }
 
     handleSubmit = async () => {
         let formData = this.state.formData
         let response = await PostService.createPost(formData);
-        if (response.status===201){
+        if (response.status === 201) {
             this.setState({
                 alert: true,
-                message: 'ok',
+                message: 'Customer Saved',
                 severity: 'success'
             });
-        }else{
+            //await this.loadData();
+        } else {
             this.setState({
                 alert: true,
-                message: 'error',
-                severity: 'un success'
+                message: 'Customer Saved Un success fully',
+                severity: 'error'
             });
         }
     }
 
+
+    /*
+       exampleForMap = () => {
+           this.state.data.map((value) => {
+               console.log(value);
+           })
+       };
+
+       loadData = async () => {
+           let res = await PostService.fetchPost();
+           if (res.status === 200) {
+               this.setState({
+                   data: res.data.data
+               });
+           }
+           console.log(this.state.data)
+           this.exampleForMap();
+       };
+
+     componentDidMount(){
+           this.loadData();
+       };
+   */
+
+
     render() {
         return (
             <>
-                <ValidatorForm
-                    ref="form"
-                    onSubmit={this.handleSubmit}
-                    onError={errors => console.log(errors)}
-                >
+                <ValidatorForm ref="form" onSubmit={this.handleSubmit}>
                     <Grid container spacing={1}>
-                        <Grid item lg={12} xs={12} sm={12} md={12}>
+                        <Grid item lg={12} xs={12} sm={12} md={12} background="">
                             <Typography variant="body1"><b><h1>User Registration</h1></b></Typography>
                         </Grid>
 
@@ -276,11 +301,11 @@ class UserForm extends Component {
                         <Button size="small" variant="contained" color={"warning"}
                                 style={{marginRight: "10px"}}>Clear</Button>
                         <Button size="small" variant="contained" style={{marginRight: "10px"}} label="Save"
-                                type="submit" onClick={this.handleSubmit} >Save</Button>
+                                type="submit" onClick={this.handleSubmit}>Save</Button>
                     </Grid>
                 </ValidatorForm>
                 <Grid>
-                    <TableContainer component={Paper}>
+     {/*               <TableContainer component={Paper}>
                         <Table sx={{minWidth: 650}} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
@@ -299,8 +324,28 @@ class UserForm extends Component {
                                     <TableCell align="right">Action</TableCell>
                                 </TableRow>
                             </TableHead>
+                            <TableBody>
+                                {
+                                    this.state.data.map((row) => (
+                                        <TableRow>
+                                            <TableCell align="left">{row.firstname}</TableCell>
+                                            <TableCell align="left">{row.lastname}</TableCell>
+                                            <TableCell align="left">{row.email}</TableCell>
+                                            <TableCell align="left">{row.username}</TableCell>
+                                            <TableCell align="left">{row.password}</TableCell>
+                                            <TableCell align="left">{row.city}</TableCell>
+                                            <TableCell align="left">{row.street}</TableCell>
+                                            <TableCell align="left">{row.number}</TableCell>
+                                            <TableCell align="left">{row.zipcode}</TableCell>
+                                            <TableCell align="left">{row.lat}</TableCell>
+                                            <TableCell align="left">{row.long}</TableCell>
+                                            <TableCell align="left">{row.phone}</TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
                         </Table>
-                    </TableContainer>
+                    </TableContainer>*/}
                 </Grid>
                 <GDSESnackBar
                     open={this.state.alert}
