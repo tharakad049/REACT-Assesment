@@ -14,7 +14,7 @@ class PostService{
         return await promise
     }
 
-    fetchPost = async (data) => {
+/*    fetchPost = async (data) => {
         const promise = new Promise((resolve, reject) => {
             axios.get("users", data)
                 .then((res) => {
@@ -25,7 +25,7 @@ class PostService{
                 })
         })
         return await promise
-    }
+    }*/
 
 }
 export default new PostService();
