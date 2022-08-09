@@ -3,7 +3,6 @@ import {Button, Grid, Paper, Table, TableCell, TableContainer, TableHead, TableR
 import GDSESnackBar from "../../Components/SnackBar";
 import {TextValidator, ValidatorForm} from 'react-material-ui-form-validator';
 import PostService from "../../Services/PostService";
-import TableBody from "@mui/material/TableBody";
 
 class UserForm extends Component {
     constructor(props) {
@@ -32,9 +31,9 @@ class UserForm extends Component {
 
             alert: false,
             message: '',
-            severity: ''
+            severity: '',
 
-           // data: []
+            data: []
         }
     }
 
