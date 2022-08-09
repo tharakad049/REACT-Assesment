@@ -8,9 +8,7 @@ import Grid from "@mui/material/Grid";
 class Dashboard extends Component {
     constructor(props) {
         super(props);
-
     }
-
     render() {
         return (
             <>
@@ -72,13 +70,8 @@ class Dashboard extends Component {
                                 <h1>60</h1>
                             </Grid>
                         </Col>
-
-
                     </Row>
-
                 </Grid>
-
-
             </>
         )
     }
