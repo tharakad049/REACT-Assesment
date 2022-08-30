@@ -5,6 +5,7 @@ import {Button} from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from "@mui/material/TextField";
 import Checkbox from "@mui/material/Checkbox";
+import NavBar from "../../Components/Navbar";
 
 class Product extends Component {
     constructor(props) {
@@ -29,6 +30,7 @@ class Product extends Component {
     render() {
         return (
             <>
+                <NavBar/>
                 <ValidatorForm ref="form">
                     <Grid container spacing={1}>
                         <Grid item lg={12} xs={12} sm={12} md={12}>

@@ -3,6 +3,8 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import { BrowserRouter as Router,Routes, Route} from "react-router-dom";
 import PrivateRoute from "../privateRoute";
+import UserForm from "../pages/User";
+import Product from "../pages/Product Manage";
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
               <Route element={<PrivateRoute  isLogged={isLogged}/>}>
                   <Route path="/dash" element={<Dashboard/>}/>
               </Route>
+              <Route path="/user" element={<UserForm/>}/>
+              <Route path="/products" element={<Product/>}/>
           </Routes>
       </Router>
   );

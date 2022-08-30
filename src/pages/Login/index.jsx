@@ -4,25 +4,29 @@ import {styleSheet} from "./style";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import {Navigate} from "react-router";
+import {Navigate, useNavigate} from "react-router";
 import GetCookie from "../../Hooks/getCookies";
 import adminService from "../../Services/adminService";
 import SetCookie from "../../Hooks/setCookies";
+
 
 function Login(props) {
     const [isLogin, setLogged] = useState(false)
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const {classes} = props;
-
+    const navigate = useNavigate();
     const [token, setToken] = useState(false)
+
+    const navigateToCreate = () => {
+        navigate('/user');
+    };
 
     const checkTokenValidity = () => {
         if (GetCookie("loginToken") != undefined) {
             setToken(true)
         }
     }
-
     useEffect(() => {
         checkTokenValidity()
     }, [])
@@ -86,8 +90,10 @@ function Login(props) {
                             </Button>
                         </div>
                         <Typography variant="h5" style={{marginTop: "-30px"}}>Create new user
-                            <Button>account ?</Button> </Typography>
+                            <Button  onClick={navigateToCreate} >account
+                                 </Button> </Typography>
                     </div>
+
                 </div>
     )
 }
