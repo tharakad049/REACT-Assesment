@@ -12,6 +12,9 @@ import {useNavigate} from "react-router";
         const navigateToDashboard = () => {
             navigate('/dash');
         };
+        const navigateToCart = () => {
+            navigate('/cart');
+        };
         return (
             <>
                 <Grid container spacing={3} direction={"row"} style={{backgroundColor: "yellow"}}>
@@ -21,7 +24,7 @@ import {useNavigate} from "react-router";
                     <Grid item lg={6} md={6} xs={6} sm={6} display={"flex"} alignItems={"center"}
                           justifyContent={"center"}>
                         <Button variant={"contained"} color={"primary"} style={{margin: "2vw"}}  onClick={navigateToProducts} >Products</Button>
-                        <Button variant={"contained"} color={"primary"} style={{margin: "2vw"}}>Cart</Button>
+                        <Button variant={"contained"} color={"primary"} style={{margin: "2vw"}} onClick={navigateToCart}>Cart</Button>
                     </Grid>
                     <Grid item lg={3} md={3} sm={3} xs={3} display={"flex"} alignItems={"center"}
                           justifyContent={"flex-end"}>

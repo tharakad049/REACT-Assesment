@@ -5,6 +5,7 @@ import { BrowserRouter as Router,Routes, Route} from "react-router-dom";
 import PrivateRoute from "../privateRoute";
 import UserForm from "../pages/User";
 import Product from "../pages/Product Manage";
+import CartManage from "../pages/Manage Cart";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
               </Route>
               <Route path="/user" element={<UserForm/>}/>
               <Route path="/products" element={<Product/>}/>
+              <Route path="/cart" element={<CartManage/>}/>
           </Routes>
       </Router>
   );
